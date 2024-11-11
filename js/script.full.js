@@ -100,8 +100,6 @@ var itemList = {
         "photo": "images/sanpham/bo10.jpg"
     }
   }; 
-  
-  
     function addCart(code) {               // hàm thêm sản phẩm vào giỏ hàng
       let number = parseInt(document.getElementById(code).value);  // lấy số lượng từ ô input có id là code, nếu số lượng <=0 thì dừng
       if (number <= 0) return;    
@@ -120,8 +118,8 @@ var itemList = {
       if( !cartTableBody ) return;  
       cartTableBody.innerHTML = "";     // xóa nội dung của bảng 
       let total = 0;  // tổng tiền = 0
-      for (let i = 0; i < localStorage.length; i++) {        // lặp qua các sản phẩm trong giỏ hàng
-          const key = localStorage.key(i);    // lấy mã sản phẩm  vd sp001
+      for (let i = 0; i < localStorage.length; i++) {        // duyệt qua các sản phẩm trong giỏ hàng
+          const key = localStorage.key(i);    // lấy mã sản phẩm  vd sp001,sp002
           if (itemList[key]) {           // kiểm tra sản phẩm có trong itemsList ko
               const item = itemList[key];    // lấy nội dung của sp ,vd itemList[sp001]
               const qty = localStorage.getItem(key) || 1;  // lấy số lượng từ localstorage
@@ -134,7 +132,7 @@ var itemList = {
                   <td class="text-center align-middle " >${item.price}</td>
                   <td class="text-center align-middle  text-nowrap ">
                       <button class="btn btn-secondary btn-sm " onclick="changeQuantity('${key}', -1)">-</button>
-                      <span class="px-2  "  id="qty-${key}">${qty}</span>
+                      <span class="px-2" >${qty}</span>
                       <button class="btn btn-secondary btn-sm" onclick="changeQuantity('${key}', 1)">+</button>
                   </td>
                   <td class="text-center align-middle  "><button class="btn btn-danger" onclick="removeCart('${key}')">Xóa</button></td>
@@ -190,7 +188,7 @@ var itemList = {
         alert("Bạn phải đồng ý với chính sách và điều khoản trước khi tiếp tục");
         return;
     }
-    if (total === 0) {
+    if (total == 0) {
         alert("Vui lòng thêm sản phẩm trước khi thanh toán!");
     }
     else{ 
@@ -198,7 +196,6 @@ var itemList = {
       updateCart(); // Cập nhật lại giỏ hàng
       alert("Đơn hàng đã được đặt đặt thành công. Cảm ơn quý khách!")
     }
-   
   }
 
   // Gọi hàm updateCart khi trang được tải
@@ -209,14 +206,28 @@ var itemList = {
     updateCart();
   };
   
-  
-  
-  
-  
-  
+function valcontact(){
+    const contactname = document.getElementById("contactname").value;
+    const contactemail = document.getElementById("contactemail").value;
+    const contacttext = document.getElementById("contacttext").value;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    console.log(contactname.length);
+    
+    if (contactname.length < 4) {
+        alert("Tên ít nhất phải có 4 kí tự");
+        return ;
+    }
+    if (!emailPattern.test(contactemail)) {
+    alert("Email không hợp lệ.");
+    return ;
+}
+    if (contacttext.length < 10) {
+        alert("Nội dung liên hệ ít nhất 10 kí tự");
+        return ;
+    } 
 
-  
-  
+alert("Thông tin liên hệ của bản đã được gửi thành công");
+}
   // Kiểm tra xem sản phẩm có đáp ứng tiêu chí lọc theo giá hay không
   function filterByPrice(price, selectedPrice) {//price là giá của sản phẩm,giá sp được gắn giá trị bên html, và selectedPrice là giá trị lọc giá mà người dùng đã chọn
     if (selectedPrice === "1" && price >= 200000) {
@@ -242,7 +253,6 @@ var itemList = {
   
   // Hiển thị hoặc ẩn sản phẩm dựa trên tiêu chí lọc
   function applyFiltersToProducts() {
-    
     const products = document.querySelectorAll('.card'); // Lấy tất cả sản phẩm
     for (let i = 0; i < products.length; i++) {
       const  chooseprice =  document.getElementById('filterPrice').value;
@@ -261,34 +271,8 @@ var itemList = {
         }
     }
   }
-  
-
- 
-  
 // đăng nhập
 
-function valcontact(){
-        const contactname = document.getElementById("contactname").value;
-        const contactemail = document.getElementById("contactemail").value;
-        const contacttext = document.getElementById("contacttext").value;
-        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        console.log(contactname.length);
-        
-        if (contactname.length < 4) {
-            alert("Tên ít nhất phải có 4 kí tự");
-            return ;
-        }
-        if (!emailPattern.test(contactemail)) {
-        alert("Email không hợp lệ.");
-        return ;
-    }
-        if (contacttext.length < 10) {
-            alert("Nội dung liên hệ ít nhất 10 kí tự");
-            return ;
-        } 
-
-    alert("Thông tin liên hệ của bản đã được gửi thành công");
-}
 function sigin(){
    
     const username = document.getElementById("usernamelog").value;
@@ -320,8 +304,8 @@ function sigin(){
   
   }
   
-  
-  // đang ký
+
+  // đăng ký
   function sigup(){
   
     const username = document.getElementById("username").value;
@@ -360,12 +344,3 @@ function sigin(){
   else
   alert("Mật khẩu nhập lại không đúng");
   }
-  
-  
-  
-  
-  
-  
-  
-   
-    

@@ -173,8 +173,7 @@ xs          sm        md        lg 	      xl          xxl
                 <!-- Sản phẩm sẽ được thêm vào đây -->
             </tbody>
         </table>
-   
-    <div id="totalAmount" class=" text-end ">
+    <div class="text-end ">
         <h4 >Tổng Số Tiền: <span id="totalPrice">0</span> VNĐ</h4>
     </div>
 </div>
@@ -184,7 +183,7 @@ xs          sm        md        lg 	      xl          xxl
   <form novalidate onsubmit=payment() >
       <div class="mb-3">
           <label for="fullName" class="form-label">Họ và Tên</label>
-          <input placeholder="Nhập họ và tên " id="fullName" type="text" class="form-control border rounded nen-xam fw-lighter fs-7 "   required>
+          <input placeholder="Nhập họ và tên " id="fullName" type="text" class="form-control border rounded nen-xam fw-lighter fs-7 "  required>
       </div>
       <div class="mb-3">
           <label for="email" class="form-label">Địa Chỉ Email</label>
@@ -201,19 +200,19 @@ xs          sm        md        lg 	      xl          xxl
       <fieldset class="mb-3">
           <legend class="col-form-label pt-0">Phương Thức Thanh Toán</legend>
           <div class="form-check">
-              <input class="form-check-input" type="radio" checked>
+              <input class="form-check-input" type="radio" name="ptthanhtoan" id="cod" checked>
               <label class="form-check-label" for="cod">
                   Thanh Toán Khi Nhận Hàng
               </label>
           </div>
           <div class="form-check">
-              <input class="form-check-input" type="radio" id="bank" >
+              <input class="form-check-input" type="radio" name="ptthanhtoan" id="bank" >
               <label class="form-check-label" for="bank">
                   Chuyển Khoản Ngân Hàng
               </label>
           </div>
           <div class="form-check">
-              <input class="form-check-input" type="radio" id="eWallet" >
+              <input class="form-check-input" type="radio"  name="ptthanhtoan" id="eWallet" >
               <label class="form-check-label" for="eWallet">
                   Ví Điện Tử
               </label>
